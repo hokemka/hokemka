@@ -23,7 +23,7 @@ const SECTIONS = [
   { id: "portfolio-links", height: 156, split: ["https://t.me/hokemkaCode", "https://hokemkabio.netlify.app/"] },
   { id: "contacts", height: 160 },
   { id: "contact-links", height: 156, split: ["https://t.me/hokemka", "https://t.me/hokemkaCode"] },
-  { id: "footer", height: 44 },
+  { id: "footer", height: 44, skip: true },
 ];
 
 const scale = (value) => Math.round((value * TARGET_WIDTH) / SOURCE_WIDTH);
@@ -66,11 +66,15 @@ const lines = [];
 let top = 0;
 SECTIONS.forEach((section, index) => {
   const prefix = String(index + 1).padStart(2, "0");
+  if (section.skip) {
+    top += section.height;
+    return;
+  }
   if (section.split) {
     const half = SOURCE_WIDTH / 2;
     const left = encode({ name: `${prefix}-${section.id}-a`, x: 0, y: top, width: half, height: section.height });
     const right = encode({ name: `${prefix}-${section.id}-b`, x: half, y: top, width: half, height: section.height });
-    lines.push(image(left, section.split[0]) + image(right, section.split[1]));
+    lines.push(`${image(left, section.split[0])} ${image(right, section.split[1])}`);
   } else {
     const url = encode({ name: `${prefix}-${section.id}`, x: 0, y: top, width: SOURCE_WIDTH, height: section.height });
     lines.push(image(url, section.link));
