@@ -2,6 +2,7 @@ import { Composition } from "remotion";
 import { About } from "./scenes/About";
 import { Hero } from "./scenes/Hero";
 import { PAGE_HEIGHT, PAGE_WIDTH, Page } from "./scenes/Page";
+import { PILL_HEIGHT, PILL_WIDTH, Pill, type PillProps } from "./scenes/Pill";
 import { LinkButton, type LinkButtonProps } from "./scenes/LinkButton";
 import { SectionTitle, type SectionTitleProps } from "./scenes/SectionTitle";
 import { Stack } from "./scenes/Stack";
@@ -19,12 +20,22 @@ const BUTTONS: (LinkButtonProps & { id: string })[] = [
   { id: "button-reviews", label: "отзывы", icon: "star" },
 ];
 
+const PILLS: (PillProps & { id: string })[] = [
+  { id: "pill-reviews", label: "отзывы", icon: "star", phase: 0 },
+  { id: "pill-site", label: "сайт-портфолио", icon: "globe", phase: 0.25 },
+  { id: "pill-write", label: "написать", icon: "telegram", primary: true, phase: 0.5 },
+  { id: "pill-channel", label: "канал", icon: "megaphone", phase: 0.75 },
+];
+
 const timing = { fps: FPS, durationInFrames: LOOP_FRAMES };
 
 export const Root = () => (
   <>
     <Composition id="hero" component={Hero} width={1200} height={600} {...timing} />
     <Composition id="page" component={Page} width={PAGE_WIDTH} height={PAGE_HEIGHT} {...timing} />
+    {PILLS.map(({ id, ...props }) => (
+      <Composition key={id} id={id} component={Pill} width={PILL_WIDTH} height={PILL_HEIGHT} defaultProps={props} {...timing} />
+    ))}
     <Composition id="about" component={About} width={1200} height={720} {...timing} />
     <Composition id="stack" component={Stack} width={1200} height={1056} {...timing} />
     {TITLES.map(({ id, ...props }) => (
