@@ -1,6 +1,7 @@
 import { Composition } from "remotion";
 import { About } from "./scenes/About";
 import { Hero } from "./scenes/Hero";
+import { PAGE_HEIGHT, PAGE_WIDTH, Page } from "./scenes/Page";
 import { LinkButton, type LinkButtonProps } from "./scenes/LinkButton";
 import { SectionTitle, type SectionTitleProps } from "./scenes/SectionTitle";
 import { Stack } from "./scenes/Stack";
@@ -23,6 +24,7 @@ const timing = { fps: FPS, durationInFrames: LOOP_FRAMES };
 export const Root = () => (
   <>
     <Composition id="hero" component={Hero} width={1200} height={600} {...timing} />
+    <Composition id="page" component={Page} width={PAGE_WIDTH} height={PAGE_HEIGHT} {...timing} />
     <Composition id="about" component={About} width={1200} height={720} {...timing} />
     <Composition id="stack" component={Stack} width={1200} height={1056} {...timing} />
     {TITLES.map(({ id, ...props }) => (

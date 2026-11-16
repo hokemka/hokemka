@@ -5,7 +5,8 @@
   "scripts": {
     "studio": "remotion studio src/index.ts",
     "render": "node scripts/render.mjs",
-    "forum": "node scripts/forum.mjs"
+    "forum": "node scripts/forum.mjs",
+    "page": "node scripts/page.mjs"
   },
   "dependencies": {
     "@fontsource/manrope": "^5.2.5",

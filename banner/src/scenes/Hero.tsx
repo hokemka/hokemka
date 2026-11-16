@@ -5,7 +5,7 @@ import type { ShardSpec } from "../components/Shard";
 import { Stage } from "../components/Stage";
 import { fonts, palette } from "../theme";
 
-const SHARDS: ShardSpec[] = [
+export const SHARDS: ShardSpec[] = [
   { id: "hero-a", x: 70, y: 56, width: 168, height: 168, radius: 50, tilt: -16, phase: 0.05, drift: 26, sway: 16, icon: "python" },
   { id: "hero-b", x: 962, y: 44, width: 196, height: 196, radius: 58, tilt: 14, phase: 0.4, drift: 30, sway: 18, icon: "telegram" },
   { id: "hero-c", x: 22, y: 292, width: 122, height: 122, radius: 38, tilt: 10, phase: 0.7, drift: 18, sway: 10, icon: "javascript" },
@@ -29,8 +29,8 @@ const SKILLS: { label: string; icon: IconName }[] = [
 const AVATAR = { top: 14, size: 252 };
 const EDGE_FADE = "rgba(0,0,0,0), #000 9%, #000 91%, rgba(0,0,0,0)";
 
-export const Hero = () => (
-  <Stage shards={SHARDS} band={{ top: AVATAR.top, height: AVATAR.size }}>
+export const Hero = ({ bare = false }: { bare?: boolean }) => (
+  <Stage bare={bare} shards={SHARDS} band={{ top: AVATAR.top, height: AVATAR.size }}>
     <AbsoluteFill style={{ alignItems: "center", paddingTop: AVATAR.top }}>
       <Img
         src={staticFile("avatar.jpg")}

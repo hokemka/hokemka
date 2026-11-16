@@ -5,7 +5,7 @@ import type { ShardSpec } from "../components/Shard";
 import { Stage } from "../components/Stage";
 import { fonts, palette } from "../theme";
 
-const SHARDS: ShardSpec[] = [
+export const SHARDS: ShardSpec[] = [
   { id: "stack-a", x: -36, y: 16, width: 176, height: 176, radius: 54, tilt: -18, phase: 0.1, drift: 24, sway: 16, icon: "docker" },
   { id: "stack-b", x: 1046, y: 6, width: 156, height: 156, radius: 78, tilt: 0, phase: 0.5, drift: 22, sway: 18, icon: "git" },
   { id: "stack-c", x: 820, y: 300, width: 190, height: 190, radius: 58, tilt: 20, phase: 0.8, drift: 30, sway: 26, spin: 14, icon: "linux" },
@@ -26,8 +26,8 @@ const GROUPS: { title: string; icon: IconName; items: Tool[] }[] = [
   { title: "базы данных", icon: "database", items: [{ label: "MySQL", icon: "mysql" }, { label: "PostgreSQL", icon: "postgresql" }, { label: "MongoDB", icon: "mongodb" }] },
 ];
 
-export const Stack = () => (
-  <Stage shards={SHARDS}>
+export const Stack = ({ bare = false }: { bare?: boolean }) => (
+  <Stage bare={bare} shards={SHARDS}>
     <AbsoluteFill style={{ alignItems: "center", padding: "42px 48px 0" }}>
       <Glass radius={999} blur={14} tint={0.16} sheenAt={0.05}>
         <div

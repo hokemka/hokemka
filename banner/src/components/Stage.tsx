@@ -9,10 +9,14 @@ type StageProps = {
   shards: ShardSpec[];
   radius?: number;
   band?: SkyBand;
+  bare?: boolean;
 };
 
-export const Stage = ({ children, shards, radius = 44, band }: StageProps) => {
+export const Stage = ({ children, shards, radius = 44, band, bare = false }: StageProps) => {
   useFonts();
+  if (bare) {
+    return <AbsoluteFill>{children}</AbsoluteFill>;
+  }
 
   return (
     <SkyBandContext.Provider value={band ?? null}>

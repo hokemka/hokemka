@@ -5,7 +5,7 @@ import type { ShardSpec } from "../components/Shard";
 import { Stage } from "../components/Stage";
 import { fonts, palette } from "../theme";
 
-const SHARDS: ShardSpec[] = [
+export const SHARDS: ShardSpec[] = [
   { id: "about-a", x: -40, y: -30, width: 150, height: 150, radius: 46, tilt: -16, phase: 0.1, drift: 18, sway: 12, icon: "python" },
   { id: "about-b", x: 1080, y: -20, width: 140, height: 140, radius: 70, tilt: 0, phase: 0.55, drift: 18, sway: 12, icon: "telegram" },
   { id: "about-c", x: 1090, y: 500, width: 130, height: 130, radius: 40, tilt: 14, phase: 0.3, drift: 16, sway: 10, icon: "javascript" },
@@ -43,8 +43,8 @@ const chip = {
   boxShadow: "inset 0 0 0 2px rgba(255,255,255,.45), inset 0 3px 1px rgba(255,255,255,.5), 0 8px 18px rgba(10,45,160,.2)",
 } as const;
 
-export const About = () => (
-  <Stage shards={SHARDS}>
+export const About = ({ bare = false }: { bare?: boolean }) => (
+  <Stage bare={bare} shards={SHARDS}>
     <AbsoluteFill style={{ padding: 40, justifyContent: "center" }}>
       <Glass radius={44} blur={18} tint={0.13}>
         <div style={{ padding: "36px 40px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
