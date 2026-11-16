@@ -14,13 +14,14 @@ const GIF_LOSS = 30;
 
 const TARGETS = [
   { id: "hero", width: 800, video: true },
+  { id: "about", width: 800 },
   { id: "stack", width: 800 },
   { id: "title-portfolio", width: 800 },
   { id: "title-contacts", width: 800 },
-  { id: "button-telegram", width: 600 },
-  { id: "button-channel", width: 600 },
-  { id: "button-site", width: 600 },
-  { id: "button-reviews", width: 600 },
+  { id: "button-telegram", width: 396 },
+  { id: "button-channel", width: 396 },
+  { id: "button-site", width: 396 },
+  { id: "button-reviews", width: 396 },
 ];
 
 const run = (command, args) => execFileSync(command, args, { cwd: ROOT, stdio: ["ignore", "ignore", "inherit"] });
