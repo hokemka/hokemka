@@ -1,34 +1,33 @@
-import { AbsoluteFill } from "remotion";
-import { palette } from "../theme";
+import { createContext, useContext } from "react";
+import { AbsoluteFill, useVideoConfig } from "remotion";
+import { palette, sky } from "../theme";
 
-type BackdropProps = {
-  dotGap?: number;
-  dotRadius?: number;
+export type SkyBand = {
+  top: number;
+  height: number;
 };
 
-export const Backdrop = ({ dotGap = 40, dotRadius = 2 }: BackdropProps) => (
-  <AbsoluteFill>
-    <AbsoluteFill
-      style={{
-        background: `linear-gradient(180deg, ${palette.skyTop} 0%, ${palette.skyMid} 46%, ${palette.skyBottom} 100%)`,
-      }}
-    />
-    <AbsoluteFill
-      style={{
-        background: [
-          "radial-gradient(46% 70% at 8% 0%, rgba(255,255,255,.62), rgba(255,255,255,0) 70%)",
-          "radial-gradient(40% 62% at 96% 2%, rgba(255,255,255,.5), rgba(255,255,255,0) 72%)",
-          "radial-gradient(60% 80% at 50% 118%, rgba(12,59,184,.55), rgba(12,59,184,0) 70%)",
-        ].join(","),
-      }}
-    />
-    <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
-      <defs>
-        <pattern id="dots" width={dotGap} height={dotGap} patternUnits="userSpaceOnUse">
-          <circle cx={dotGap / 2} cy={dotGap / 2} r={dotRadius} fill="rgba(255,255,255,.42)" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#dots)" />
-    </svg>
-  </AbsoluteFill>
-);
+export const SkyBandContext = createContext<SkyBand | null>(null);
+
+const DOT_GAP = 40;
+const DOT_RADIUS = 2;
+
+export const Backdrop = () => {
+  const stage = useVideoConfig();
+  const band = useContext(SkyBandContext) ?? { top: -stage.height * 0.35, height: stage.height * 1.35 };
+  const stops = sky.map((color, index) => `${color} ${band.top + (band.height * index) / (sky.length - 1)}px`);
+
+  return (
+    <AbsoluteFill>
+      <AbsoluteFill style={{ background: `linear-gradient(180deg, ${stops.join(", ")}, ${palette.deep} 100%)` }} />
+      <svg width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+        <defs>
+          <pattern id="dots" width={DOT_GAP} height={DOT_GAP} patternUnits="userSpaceOnUse">
+            <circle cx={DOT_GAP / 2} cy={DOT_GAP / 2} r={DOT_RADIUS} fill="rgba(255,255,255,.42)" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dots)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};

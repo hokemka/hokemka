@@ -1,10 +1,10 @@
 <div class="hk">
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap");
+{{fontface}}
 .hk{container-type:inline-size;width:100%;margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display",Inter,system-ui,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.35;color:#fff;text-align:left;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 .hk *,.hk *::before,.hk *::after{box-sizing:border-box;margin:0;padding:0}
 .hk svg{display:block;flex:none}
-.hk-stage{position:relative;isolation:isolate;overflow:hidden;border-radius:28px;padding:clamp(20px,5.5cqw,38px) clamp(14px,3.6cqw,26px) clamp(16px,4cqw,28px);background:radial-gradient(60% 300px at 6% 0,rgba(255,255,255,.62),rgba(255,255,255,0) 72%),radial-gradient(52% 260px at 97% 0,rgba(255,255,255,.5),rgba(255,255,255,0) 74%),linear-gradient(180deg,#a9c9fc 0,#4f8af3 300px,#2f6ae8 62%,#1d57de 100%)}
+.hk-stage{--pt:clamp(14px,3.6cqw,26px);--tile:clamp(132px,36cqw,236px);--k:calc(var(--tile)/10);position:relative;isolation:isolate;overflow:hidden;border-radius:28px;padding:var(--pt) clamp(14px,3.6cqw,26px) clamp(16px,4cqw,28px);background:linear-gradient(180deg,#d6e6fc 0,#d6e6fc var(--pt),#c6dbfc calc(var(--pt) + var(--k)*1),#b0cefb calc(var(--pt) + var(--k)*2),#93bcfb calc(var(--pt) + var(--k)*3),#77a8f5 calc(var(--pt) + var(--k)*4),#5f95f4 calc(var(--pt) + var(--k)*5),#4b84f0 calc(var(--pt) + var(--k)*6),#3d77eb calc(var(--pt) + var(--k)*7),#306be5 calc(var(--pt) + var(--k)*8),#245fe0 calc(var(--pt) + var(--k)*9),#215bd9 calc(var(--pt) + var(--k)*10),#1b4ec9 100%)}
 .hk-stage::before{content:"";position:absolute;inset:0;z-index:-2;background-image:radial-gradient(circle,rgba(255,255,255,.42) 1.3px,rgba(255,255,255,0) 1.9px);background-size:26px 26px}
 .hk-air{position:absolute;inset:0;z-index:-1;pointer-events:none}
 .hk-lane{position:absolute;inset:0;animation:hk-rise var(--t,20s) linear var(--d,0s) infinite}
@@ -15,16 +15,13 @@
 .hk-shard svg{width:50%;height:50%;fill:#fff;filter:drop-shadow(0 4px 8px rgba(10,45,160,.5))}
 .hk-glass{position:relative;border-radius:24px;background:linear-gradient(160deg,rgba(255,255,255,.27),rgba(255,255,255,.13) 46%,rgba(255,255,255,.19));-webkit-backdrop-filter:blur(16px) saturate(160%);backdrop-filter:blur(16px) saturate(160%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.42),inset 0 1.5px 1px rgba(255,255,255,.72),inset 0 -1px 2px rgba(255,255,255,.2),0 14px 34px rgba(10,45,160,.28)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.hk-glass{background:rgba(72,128,240,.92)}.hk-shard{background:rgba(150,190,255,.8)}}
-.hk-in{animation:hk-in .7s cubic-bezier(.2,.8,.2,1) calc(var(--i,0)*70ms) both}
+.hk-in{animation:hk-in .5s cubic-bezier(.2,.8,.2,1) calc(var(--i,0)*35ms) both}
 .hk-hero{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding-bottom:clamp(18px,4.6cqw,30px)}
-.hk-tile{position:relative;width:clamp(96px,25cqw,168px);height:clamp(96px,25cqw,168px);border-radius:24%;overflow:hidden;box-shadow:0 0 0 1.5px rgba(255,255,255,.7),0 18px 40px rgba(10,45,160,.42);animation:hk-bob 6s ease-in-out infinite}
+.hk-tile{width:var(--tile);height:var(--tile);-webkit-mask:linear-gradient(90deg,rgba(0,0,0,0),#000 9%,#000 91%,rgba(0,0,0,0)),linear-gradient(180deg,rgba(0,0,0,0),#000 9%,#000 91%,rgba(0,0,0,0));-webkit-mask-composite:source-in;mask:linear-gradient(90deg,rgba(0,0,0,0),#000 9%,#000 91%,rgba(0,0,0,0)) intersect,linear-gradient(180deg,rgba(0,0,0,0),#000 9%,#000 91%,rgba(0,0,0,0))}
 .hk-tile img{display:block;width:100%;height:100%;object-fit:cover;border:0;border-radius:0;max-width:none}
 .hk-sheen{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none}
 .hk-sheen::before{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:36%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.5),rgba(255,255,255,0));transform:translateX(-160%) skewX(-20deg);animation:hk-sheen 6s cubic-bezier(.25,.1,.25,1) infinite}
-.hk-name{position:relative;margin-top:clamp(12px,3cqw,20px);font-family:"Unbounded",system-ui,sans-serif;font-weight:700;font-size:clamp(38px,13cqw,104px);line-height:1.1;letter-spacing:-.01em;filter:drop-shadow(0 10px 16px rgba(10,45,160,.5))}
-.hk-name span{display:block;padding:0 .08em .05em}
-.hk-rim{position:absolute;inset:0;color:#fff;-webkit-text-fill-color:#fff;-webkit-text-stroke:.05em #fff}
-.hk-fill{position:relative;color:#cfe0ff;background:linear-gradient(100deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.95) 50%,rgba(255,255,255,0) 60%) 130% 0/260% 100% no-repeat,radial-gradient(circle,rgba(255,255,255,.38) .045em,rgba(255,255,255,0) .06em) 0 0/.42em .42em,linear-gradient(180deg,#fff 0,#e3edff 20%,#b3cdff 47%,#8cb3fb 60%,#bdd4ff 82%,#eef4ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:hk-glint 6s cubic-bezier(.25,.1,.25,1) infinite}
+.hk-name{margin-top:clamp(-14px,-2.4cqw,-6px);font-family:"Unbounded",system-ui,sans-serif;font-weight:700;font-size:clamp(38px,13cqw,104px);line-height:1.05;letter-spacing:-.01em;color:#fff;text-shadow:0 8px 28px rgba(10,45,160,.5)}
 .hk-role{margin-top:clamp(4px,1cqw,8px);font-weight:600;font-size:clamp(14px,3.9cqw,22px);color:rgba(255,255,255,.86);text-shadow:0 3px 14px rgba(10,45,160,.45)}
 .hk-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:clamp(14px,3.4cqw,22px)}
 .hk-chip{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px 0 13px;border-radius:999px;font-weight:700;font-size:clamp(14px,3.6cqw,17px);color:#fff;white-space:nowrap;background:linear-gradient(180deg,rgba(255,255,255,.32),rgba(255,255,255,.15));box-shadow:inset 0 0 0 1px rgba(255,255,255,.45),inset 0 1.5px 1px rgba(255,255,255,.6),0 6px 14px rgba(10,45,160,.2)}
@@ -63,12 +60,10 @@
 .hk-cta .hk-sheen::before{background:linear-gradient(90deg,rgba(79,138,243,0),rgba(79,138,243,.28),rgba(79,138,243,0));animation-duration:4s}
 @keyframes hk-float{0%,100%{transform:translate3d(0,0,0) rotate(var(--r,0deg))}50%{transform:translate3d(var(--dx,8px),var(--dy,-14px),0) rotate(calc(var(--r,0deg) + var(--dr,8deg)))}}
 @keyframes hk-rise{from{transform:translate3d(0,102%,0)}to{transform:translate3d(0,-12%,0)}}
-@keyframes hk-bob{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-6px,0)}}
 @keyframes hk-sheen{0%,12%{transform:translateX(-160%) skewX(-20deg)}42%,100%{transform:translateX(420%) skewX(-20deg)}}
-@keyframes hk-glint{0%,18%{background-position:130% 0,0 0,0 0}52%,100%{background-position:-30% 0,0 0,0 0}}
 @keyframes hk-nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
 @keyframes hk-in{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:none}}
-@container (min-width:700px){.hk-stage{padding:44px 32px 32px;border-radius:32px}.hk-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:start}.hk-col{gap:16px}.hk-wide{grid-column:1/-1}.hk-feats{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.hk-text{max-width:820px}.hk a.hk-cta{height:60px}}
+@container (min-width:700px){.hk-stage{--pt:30px;padding:30px 32px 32px;border-radius:32px}.hk-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:start}.hk-col{gap:16px}.hk-wide{grid-column:1/-1}.hk-feats{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.hk-text{max-width:820px}.hk a.hk-cta{height:60px}}
 @media (prefers-reduced-motion:reduce){.hk *,.hk *::before,.hk *::after{animation:none!important;transition:none!important}}
 </style>
 <div class="hk-stage">
@@ -88,19 +83,23 @@
 <div class="hk-lane" style="--t:19s;--d:-9s"><i class="hk-shard" style="--s:clamp(24px,6cqw,42px);left:82%;top:0;--r:-14deg;--dx:10px;--dy:0px;--dr:-22deg;--t:5.5s">{{brand:linux}}</i></div>
 </div>
 <div class="hk-hero">
-<div class="hk-tile hk-in" style="--i:0">{{avatar}}<span class="hk-sheen"></span></div>
-<div class="hk-name hk-in" style="--i:1"><span class="hk-rim" aria-hidden="true">hokemka</span><span class="hk-fill">hokemka</span></div>
+<div class="hk-tile">{{avatar}}</div>
+<div class="hk-name hk-in" style="--i:1">hokemka</div>
 <div class="hk-role hk-in" style="--i:2">fullstack-разработчик · 5+ лет опыта</div>
 <div class="hk-chips hk-in" style="--i:3">
 <span class="hk-chip">{{line:window}}сайты</span>
 <span class="hk-chip">{{line:code}}софт</span>
 <span class="hk-chip">{{brand:telegram}}telegram-боты</span>
+<span class="hk-chip">{{line:terminal}}скрипты</span>
+<span class="hk-chip">{{line:search}}парсеры</span>
+<span class="hk-chip">{{line:check}}чекеры</span>
+<span class="hk-chip">{{line:bolt}}автоматизация</span>
 </div>
 </div>
 <div class="hk-grid">
 <div class="hk-glass hk-card hk-wide hk-in" style="--i:4">
 <div class="hk-head">разработка под ключ</div>
-<div class="hk-text">проектирую и разрабатываю <b>сайты</b>, <b>софт</b> и <b>telegram-ботов</b> под задачи вашего проекта. беру работу целиком — от архитектуры до запуска — и сдаю готовый продукт, а не набросок.</div>
+<div class="hk-text">проектирую и разрабатываю <b>сайты</b>, <b>софт</b>, <b>telegram-ботов</b>, <b>парсеры</b>, <b>чекеры</b> и <b>скрипты автоматизации</b> под задачи вашего проекта. беру работу целиком — от архитектуры до запуска — и сдаю готовый продукт, а не набросок.</div>
 <div class="hk-feats">
 <div class="hk-feat">{{line:check}}<b>строго по тз</b><span>реализую ровно то, что согласовали</span></div>
 <div class="hk-feat">{{line:bolt}}<b>кратчайшие сроки</b><span>называю дедлайн и соблюдаю его</span></div>
@@ -131,11 +130,10 @@
 <div class="hk-glass hk-card hk-in" style="--i:6">
 <div class="hk-head">{{line:folder}}портфолио</div>
 <div class="hk-links">
-<a class="hk-link" href="ССЫЛКА_НА_ОТЗЫВЫ" target="_blank" rel="noopener">{{line:star}}<span>отзывы на форуме</span>{{go}}</a>
-<a class="hk-link" href="https://t.me/hokemkaCode" target="_blank" rel="noopener">{{brand:telegram}}<span>канал с работами</span>{{go}}</a>
+<a class="hk-link" href="https://t.me/hokemkaCode" target="_blank" rel="noopener">{{brand:telegram}}<span>отзывы и работы в telegram</span>{{go}}</a>
 <a class="hk-link" href="https://hokemkabio.netlify.app/" target="_blank" rel="noopener">{{line:globe}}<span>сайт-портфолио</span>{{go}}</a>
 </div>
-<div class="hk-note">сейчас восстанавливаю в канале все работы</div>
+<div class="hk-note">био и отзывы — в закреплённом сообщении канала</div>
 </div>
 <a class="hk-cta hk-in" style="--i:7" href="https://t.me/hokemka" target="_blank" rel="noopener">{{brand:telegram}}написать в telegram{{go}}<span class="hk-sheen"></span></a>
 </div>

@@ -1,11 +1,9 @@
+export const sky = ["#d6e6fc", "#c6dbfc", "#b0cefb", "#93bcfb", "#77a8f5", "#5f95f4", "#4b84f0", "#3d77eb", "#306be5", "#245fe0", "#215bd9"];
+
 export const palette = {
-  skyTop: "#a9c9fc",
-  skyMid: "#4f8af3",
-  skyBottom: "#1d57de",
-  deep: "#0c3bb8",
+  deep: "#1b4ec9",
   white: "#ffffff",
-  mist: "rgba(255,255,255,.82)",
-  shadow: "rgba(10,45,160,.34)",
+  mist: "rgba(255,255,255,.86)",
 };
 
 export const fonts = {
