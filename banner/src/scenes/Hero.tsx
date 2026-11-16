@@ -1,7 +1,7 @@
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, Img, interpolate, staticFile } from "remotion";
 import { Glass } from "../components/Glass";
 import { Icon, type IconName } from "../components/Icon";
-import { Logo } from "../components/Logo";
+import { Sheen } from "../components/Sheen";
 import type { ShardSpec } from "../components/Shard";
 import { Stage } from "../components/Stage";
 import { useLoop, wave } from "../loop";
@@ -30,28 +30,57 @@ const SKILLS: { label: string; icon: IconName }[] = [
 export const Hero = () => {
   const progress = useLoop();
   const lift = 8 * wave(progress, 1, 0.15);
+  const glint = interpolate(progress, [0.18, 0.52], [130, -30], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
     <Stage shards={SHARDS}>
       <AbsoluteFill style={{ alignItems: "center", paddingTop: 40 }}>
         <div style={{ transform: `translateY(${lift}px)` }}>
-          <Glass radius={46} blur={14} tint={0.12} sheenAt={0.08} style={{ width: 190, height: 190 }}>
-            <Logo size={190} />
-          </Glass>
+          <div
+            style={{
+              position: "relative",
+              width: 196,
+              height: 196,
+              borderRadius: 47,
+              overflow: "hidden",
+              boxShadow: "0 0 0 3px rgba(255,255,255,.7), 0 26px 56px rgba(10,45,160,.42)",
+            }}
+          >
+            <Img src={staticFile("avatar.jpg")} style={{ width: "100%", height: "100%" }} />
+            <Sheen start={0.08} />
+          </div>
         </div>
         <div
           style={{
-            marginTop: 22,
+            position: "relative",
+            marginTop: 18,
             fontFamily: fonts.display,
             fontWeight: 700,
             fontSize: 104,
-            lineHeight: 1.05,
+            lineHeight: 1.1,
             letterSpacing: "-.01em",
-            color: palette.white,
-            textShadow: "0 10px 34px rgba(10,45,160,.5), 0 2px 0 rgba(255,255,255,.25)",
+            filter: "drop-shadow(0 12px 20px rgba(10,45,160,.5))",
           }}
         >
-          hokemka
+          <div style={{ position: "absolute", inset: 0, color: palette.white, WebkitTextStroke: "5px #ffffff" }}>hokemka</div>
+          <div
+            style={{
+              position: "relative",
+              color: "transparent",
+              backgroundImage: [
+                `linear-gradient(100deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.95) 50%, rgba(255,255,255,0) 60%)`,
+                "radial-gradient(circle, rgba(255,255,255,.38) 4.6px, rgba(255,255,255,0) 6.2px)",
+                "linear-gradient(180deg, #ffffff 0%, #e3edff 20%, #b3cdff 47%, #8cb3fb 60%, #bdd4ff 82%, #eef4ff 100%)",
+              ].join(","),
+              backgroundSize: "260% 100%, 44px 44px, 100% 100%",
+              backgroundPosition: `${glint}% 0, 0 0, 0 0`,
+              backgroundRepeat: "no-repeat, repeat, no-repeat",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+            }}
+          >
+            hokemka
+          </div>
         </div>
         <div
           style={{
